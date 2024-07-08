@@ -1,0 +1,29 @@
+video_time,message
+00:00:37,"Hey!..... I am a voice agent here to support you during the design task.....I can hear what you are saying, and I can see your screen and follow along with you while you work on the task. Occasionally, I will ask you questions that are supposed to help you think through the design task."
+00:01:32,Hey!..... What are you trying to do?
+00:06:04,Hey!..... One question... What are the loads you need to consider?
+00:07:24,Hey.... One more question...What other forces and moments could be relevant for the bracket?
+00:08:24,How will the bracket be connected to other parts and will these move in any way?
+00:09:36,One other question... What are the structural constraints of your load cases?
+00:12:40,Hey... One consideration... Would drawing a free-body diagram help?
+00:18:40,Hey... One question... How familiar are you with these manufacturing processes?
+00:19:11,Hey... Can you explain what you think how these manufacturing settings will impact the generated designs?
+00:19:37,Hey... Can you explain what you think how these manufacturing settings will impact the generated designs?
+00:20:45,Hey... How might the die casting settings impact the generated shapes?
+00:22:27,Here's a question about the materials... What are suitable materials for the manufacturing processes?
+00:24:47,Hey... does the bracket's and engine's environment impact the material choice in any way?
+00:28:19,Hey... What are your considerations regarding manufacturing when selecting materials?
+00:32:50,Hey... what are you trying to do?
+00:33:21,What's your strategy for that?
+00:37:33,Hey... would running a preview simulation help?
+00:43:43,Hey... What did you learn from evaluating the preview? Is there anything you would like to change?
+00:47:37,Hey... What did you learn from evaluating the preview? Is there anything you would like to change?
+00:49:24,"Hey!..... I am a voice agent here to support you during the design task.....I can hear what you are saying, and I can see your screen and follow along with you while you work on the task. Occasionally, I will ask you questions that are supposed to help you think through the design task."
+00:50:26,"Hey… Here is a question for you… What do you think about the generated design?
+Is there anything you would like to change?"
+00:51:17,Great... Can you explain…What is your goal when comparing the different designs?
+00:52:25,Great.... Can you explain how you think the designs differ regarding aspects of manufacturing and assembly? 
+00:54:22,Ok... And How much do you trust the generated designs?
+01:02:20,Hey... what impact and difference does the manufacturing method have on the generated geometry?
+01:05:47,Hey... how important is the mass-to-strength ratio of the pieces in your evaluation?
+01:07:26,Hey..  Which material and manufacturing method combination do you think works best for this task?

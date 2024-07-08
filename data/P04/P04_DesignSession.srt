@@ -1,0 +1,1488 @@
+1
+00:00:00,000 --> 00:00:04,000
+[silence]
+
+2
+00:00:04,000 --> 00:00:08,000
+Hey Hannah, this is Frederik. Can you hear me?
+
+3
+00:00:08,000 --> 00:00:12,000
+Yes, I can hear you. Okay, great. I can hear you too. So I just
+
+4
+00:00:12,000 --> 00:00:16,000
+started the recording in Zoom, so you can just confirm that, then it's
+
+5
+00:00:16,000 --> 00:00:20,000
+out of the way. And with that said,
+
+6
+00:00:20,000 --> 00:00:24,000
+just wait until you hear the first message and then
+
+7
+00:00:24,000 --> 00:00:28,000
+start with the task. And
+
+8
+00:00:28,000 --> 00:00:32,000
+I'm out now, but I'm following along.
+
+9
+00:00:32,000 --> 00:00:36,000
+Okay.
+
+10
+00:00:36,000 --> 00:00:40,000
+Hey, I am a voice agent here to support you
+
+11
+00:00:40,000 --> 00:00:44,000
+during the design task. I can hear what you are saying, and I can see your screen
+
+12
+00:00:44,000 --> 00:00:48,000
+and follow along with you while you work on the task. Occasionally,
+
+13
+00:00:48,000 --> 00:00:52,000
+I will ask you questions that are supposed to help you think through the design task.
+
+14
+00:00:52,000 --> 00:00:56,000
+[silence]
+
+15
+00:00:56,000 --> 00:01:21,840
+Yeah.
+
+16
+00:01:21,840 --> 00:01:44,840
+So the goal is to create the bracket within the defined space.
+
+17
+00:01:44,840 --> 00:01:55,840
+I'm thinking about where to start. I'm thinking if we don't want anything generated outside the box, I should maybe make
+
+18
+00:01:55,840 --> 00:02:12,840
+an object outside of the box to limit it so that it doesn't design here.
+
+19
+00:02:12,840 --> 00:02:19,840
+So I'll just make it, I'll just extrude on each frame.
+
+20
+00:02:19,840 --> 00:02:39,840
+That's not how you do that.
+
+21
+00:02:39,840 --> 00:02:43,840
+And I'll just do that with all of them.
+
+22
+00:02:44,840 --> 00:02:47,840
+I don't know if I can do it all at the same time.
+
+23
+00:02:47,840 --> 00:03:16,840
+Okay.
+
+24
+00:04:14,840 --> 00:04:26,840
+So then I'll just mark those as obstacles for the study.
+
+25
+00:04:26,840 --> 00:04:55,840
+Okay.
+
+26
+00:05:24,840 --> 00:05:48,840
+So if it has to carry this much weight, then I should add a load.
+
+27
+00:05:48,840 --> 00:06:09,840
+Okay.
+
+28
+00:06:09,840 --> 00:06:27,840
+I need to consider 1250 kilograms of engine weight, and that will be distributed among these three bolts.
+
+29
+00:06:27,840 --> 00:06:56,840
+Which I could probably assume is distributed evenly in the Y direction.
+
+30
+00:06:56,840 --> 00:07:23,840
+If that assumes that no force is applied at this point, at the damper connection, because I'm not really sure how that fastens.
+
+31
+00:07:23,840 --> 00:07:33,840
+Okay.
+
+32
+00:07:33,840 --> 00:07:58,840
+So downward force in the Y direction at the bolts, which will also kind of be a moment at.
+
+33
+00:07:58,840 --> 00:08:23,840
+Okay.
+
+34
+00:08:23,840 --> 00:08:41,840
+So the bolts are connected to the engine, but they're supposed to carry the engine weight.
+
+35
+00:08:41,840 --> 00:08:52,840
+But the damper, assuming it's significantly lighter than the engine, is not carried by the bolts.
+
+36
+00:08:52,840 --> 00:09:01,840
+I'm not quite sure how the bolts carry the weight of the engine, considering.
+
+37
+00:09:01,840 --> 00:09:28,840
+It would seem like this bottom plate would carry more of the weight.
+
+38
+00:09:28,840 --> 00:09:48,840
+I'm not really sure where the weight is being applied.
+
+39
+00:09:48,840 --> 00:09:58,840
+If the load is being applied at these three bolts. I'm not really sure how.
+
+40
+00:09:58,840 --> 00:10:22,840
+I want it to be.
+
+41
+00:10:22,840 --> 00:10:40,840
+So the engine weight is being applied on the bracket.
+
+42
+00:10:40,840 --> 00:10:46,840
+Like on top of this metal piece here that isn't touching anything. I'm not really sure how that happens.
+
+43
+00:10:46,840 --> 00:11:09,840
+But if that were the case, then that applied weight would cause a moment in the bolts.
+
+44
+00:11:09,840 --> 00:11:38,840
+Okay.
+
+45
+00:11:38,840 --> 00:11:48,840
+So the force is being applied from the damper. I see, I see.
+
+46
+00:11:48,840 --> 00:11:56,840
+So it's actually an upward Y force being applied by the damper.
+
+47
+00:11:56,840 --> 00:12:15,840
+So the force would be coming from here, which means that the bolts are providing a reaction force in the negative Y direction.
+
+48
+00:12:15,840 --> 00:12:22,840
+Which means it's a moment that way.
+
+49
+00:12:22,840 --> 00:12:38,840
+So we want the bracket to be strong in that direction.
+
+50
+00:12:38,840 --> 00:12:54,840
+Sure.
+
+51
+00:12:54,840 --> 00:13:03,840
+If I were to draw a free body diagram, I would say the applied force is that way in the positive Y.
+
+52
+00:13:03,840 --> 00:13:08,840
+Right. So why? Sure. Oh, that's the axis. Okay.
+
+53
+00:13:08,840 --> 00:13:15,840
+So in the positive Z. Which means the reaction forces are in the negative Y direction over here.
+
+54
+00:13:15,840 --> 00:13:28,840
+And this applies a moment in the.
+
+55
+00:13:28,840 --> 00:13:36,840
+If that's the X axis, then the applied force is providing a negative moment around the X axis.
+
+56
+00:13:36,840 --> 00:13:44,840
+So we want the part to provide a positive X moment.
+
+57
+00:13:44,840 --> 00:14:13,840
+So I'll just add in the applied force, which I think is in the generative section.
+
+58
+00:14:13,840 --> 00:14:27,840
+Okay.
+
+59
+00:14:27,840 --> 00:14:48,840
+Okay, I should probably fix these existing parts.
+
+60
+00:14:48,840 --> 00:15:13,840
+No obstacles. Oh, wait. I already did obstacles.
+
+61
+00:15:13,840 --> 00:15:26,840
+This part isn't.
+
+62
+00:15:26,840 --> 00:15:55,840
+Right now it's kind of levitating, but the bolts are fixed.
+
+63
+00:15:55,840 --> 00:16:21,840
+So I'll add the load here.
+
+64
+00:16:21,840 --> 00:16:43,840
+So I'm just finding this in Newton's.
+
+65
+00:16:43,840 --> 00:16:55,840
+Okay. So that's the applied force of the damper.
+
+66
+00:16:55,840 --> 00:17:21,840
+Not sure how to distribute that. It kind of looks like a point force. But maybe that's fine.
+
+67
+00:17:21,840 --> 00:17:28,840
+I'm assuming that Fusion knows that will apply a moment over there.
+
+68
+00:17:28,840 --> 00:17:44,840
+So I'll move on.
+
+69
+00:17:44,840 --> 00:18:02,840
+I'll add the materials.
+
+70
+00:18:02,840 --> 00:18:22,840
+Doesn't specify a factor of safety, so I'll say two.
+
+71
+00:18:22,840 --> 00:18:46,840
+Okay.
+
+72
+00:18:46,840 --> 00:18:57,840
+Not very much. I understand three axis milling, but I'm not sure about five axis milling and die casting.
+
+73
+00:18:57,840 --> 00:19:00,840
+Yeah, I also don't know what that is.
+
+74
+00:19:00,840 --> 00:19:08,840
+But I'll just add them all, since we have the option to do all of them.
+
+75
+00:19:08,840 --> 00:19:20,840
+Not sure how to add die cast.
+
+76
+00:19:20,840 --> 00:19:29,840
+I'm assuming die casting is more advanced than three axis milling.
+
+77
+00:19:29,840 --> 00:19:31,840
+So.
+
+78
+00:19:31,840 --> 00:19:42,840
+Wait, I forgot the question.
+
+79
+00:19:42,840 --> 00:19:45,840
+Oh.
+
+80
+00:19:45,840 --> 00:19:48,840
+I'm not sure.
+
+81
+00:19:48,840 --> 00:19:59,840
+I mean, three axis is fewer axes than five, so it would probably be less advanced or precise.
+
+82
+00:19:59,840 --> 00:20:11,840
+I'm not sure about die casting.
+
+83
+00:20:11,840 --> 00:20:23,840
+Casting.
+
+84
+00:20:23,840 --> 00:20:44,840
+Ejection direction.
+
+85
+00:20:44,840 --> 00:20:54,840
+How might the die casting settings impact the generated shapes?
+
+86
+00:20:54,840 --> 00:21:14,840
+How die casting works, but I'm assuming if I select it as an option, it will create some models that are only doable via die casting, which I think is feasible, given the specifications.
+
+87
+00:21:14,840 --> 00:21:26,840
+I'm just going to go with the pre selected option.
+
+88
+00:21:26,840 --> 00:21:36,840
+And put in the options for materials which are stainless steel, cast iron, and one more.
+
+89
+00:21:36,840 --> 00:22:03,840
+So.
+
+90
+00:22:03,840 --> 00:22:09,840
+Cast iron.
+
+91
+00:22:09,840 --> 00:22:14,840
+And if I had to pick one more.
+
+92
+00:22:14,840 --> 00:22:26,840
+Something light but strong.
+
+93
+00:22:26,840 --> 00:22:38,840
+I'm not really sure.
+
+94
+00:22:38,840 --> 00:22:48,840
+I know you can mill with aluminum.
+
+95
+00:22:48,840 --> 00:23:17,840
+She just Google.
+
+96
+00:23:17,840 --> 00:23:28,840
+Okay.
+
+97
+00:23:28,840 --> 00:23:57,840
+Okay.
+
+98
+00:23:57,840 --> 00:24:08,840
+I'm going to pick aluminum.
+
+99
+00:24:08,840 --> 00:24:33,840
+I could also compare their yield strengths.
+
+100
+00:24:33,840 --> 00:24:45,840
+I'm going to pick aluminum.
+
+101
+00:24:45,840 --> 00:24:52,840
+Hey, does the brackets and engines environment impact the material choice in any way?
+
+102
+00:24:52,840 --> 00:24:55,840
+Yes.
+
+103
+00:24:55,840 --> 00:25:00,840
+It can't melt at high temperatures, it has to be.
+
+104
+00:25:00,840 --> 00:25:14,840
+Pretty heat resistant.
+
+105
+00:25:14,840 --> 00:25:43,840
+I forget the metric for that.
+
+106
+00:25:43,840 --> 00:26:12,840
+It could also be a good option, except I think that's really heavy.
+
+107
+00:26:12,840 --> 00:26:37,840
+Also not sure if you can mill it.
+
+108
+00:26:37,840 --> 00:27:06,840
+Okay.
+
+109
+00:27:06,840 --> 00:27:12,840
+So for weight purposes, I would choose aluminum, but.
+
+110
+00:27:12,840 --> 00:27:41,840
+I'm not sure about the heat constraints of the engine.
+
+111
+00:27:41,840 --> 00:27:57,840
+I think I'll stick with aluminum.
+
+112
+00:27:57,840 --> 00:28:18,840
+Definitely cheaper.
+
+113
+00:28:18,840 --> 00:28:28,840
+Okay.
+
+114
+00:28:28,840 --> 00:28:35,840
+I have to make sure that the materials can be manufactured in one of these three ways.
+
+115
+00:28:35,840 --> 00:28:38,840
+And that it's serviceable.
+
+116
+00:28:38,840 --> 00:28:45,840
+Meaning, it could be removed and altered if needed.
+
+117
+00:28:45,840 --> 00:28:53,840
+Which I think all of these materials are able to be modified.
+
+118
+00:28:53,840 --> 00:28:58,840
+And.
+
+119
+00:28:58,840 --> 00:29:07,840
+Yeah.
+
+120
+00:29:07,840 --> 00:29:32,840
+Other than that.
+
+121
+00:29:32,840 --> 00:29:55,840
+Okay.
+
+122
+00:29:55,840 --> 00:30:17,840
+Three connection points. Minimize weight, maximize strength.
+
+123
+00:30:17,840 --> 00:30:25,840
+And I fixed those three points, so that's good. Machine ability.
+
+124
+00:30:25,840 --> 00:30:35,840
+All those types can be machined using a mill.
+
+125
+00:30:35,840 --> 00:31:04,840
+I'm assuming for generative design. Wow.
+
+126
+00:31:04,840 --> 00:31:10,840
+Machine ability, cost.
+
+127
+00:31:10,840 --> 00:31:14,840
+All three are pretty common.
+
+128
+00:31:14,840 --> 00:31:18,840
+Assembly operations.
+
+129
+00:31:18,840 --> 00:31:22,840
+All three can be bolted just fine.
+
+130
+00:31:22,840 --> 00:31:27,840
+Serviceability.
+
+131
+00:31:27,840 --> 00:31:30,840
+Because that depends more on.
+
+132
+00:31:30,840 --> 00:31:40,840
+How you bolt it, so it can't be permanent but as long as you can take the bolts in and out, that should be fine.
+
+133
+00:31:40,840 --> 00:31:43,840
+Maintenance, same thing if you can take the bolts out.
+
+134
+00:31:43,840 --> 00:31:47,840
+So it just can't block.
+
+135
+00:31:47,840 --> 00:31:50,840
+The damper.
+
+136
+00:31:50,840 --> 00:32:03,840
+Which I think this constraint is good enough for that.
+
+137
+00:32:03,840 --> 00:32:09,840
+There's also going to be something going through the middle so it can't block that so I should make.
+
+138
+00:32:09,840 --> 00:32:18,840
+This top part of the damper so that it doesn't build anything there.
+
+139
+00:32:18,840 --> 00:32:34,840
+That would be designed.
+
+140
+00:32:34,840 --> 00:32:49,840
+Where's that part of the bracket?
+
+141
+00:32:49,840 --> 00:32:53,840
+Hey, what are you trying to do?
+
+142
+00:32:53,840 --> 00:33:20,840
+I'm just trying to make the obstacle so that it doesn't build the bracket where this black thing is. So that the damper can go through the hole unobstructed by the bracket.
+
+143
+00:33:20,840 --> 00:33:24,840
+What's your strategy for that?
+
+144
+00:33:24,840 --> 00:33:36,840
+I'm just trying to extrude this rig, but I might just draw a new sketch and extrude that instead.
+
+145
+00:33:36,840 --> 00:33:39,840
+Hey Hannah, it's Frederick. Can you hear me?
+
+146
+00:33:39,840 --> 00:33:40,840
+Yes, I can.
+
+147
+00:33:40,840 --> 00:33:41,840
+Okay, great.
+
+148
+00:33:41,840 --> 00:33:47,840
+I'm just stepping in quickly here because also of the time.
+
+149
+00:33:47,840 --> 00:33:57,840
+It looks like you're about to model something that you would use as obstacle geometry in that dampener connection, correct?
+
+150
+00:33:57,840 --> 00:33:58,840
+Yes.
+
+151
+00:33:58,840 --> 00:34:05,840
+Okay, just as a shortcut because that saves a lot of modeling, fiddling around.
+
+152
+00:34:05,840 --> 00:34:17,840
+If you go back to the generative design mode, right, and then you go to edit model, which is in the upper ribbon menu.
+
+153
+00:34:17,840 --> 00:34:18,840
+Yep, exactly.
+
+154
+00:34:18,840 --> 00:34:23,840
+So this is like a mode where you can model additional obstacle geometry.
+
+155
+00:34:23,840 --> 00:34:35,840
+And if you go to model components and the viewer, and then bodies and you hide all the surrounding, right, otherwise it's hard to see.
+
+156
+00:34:35,840 --> 00:34:47,840
+And if you now go to the upper ribbon again, and I think the fourth icon, this one, obstacle connection or connector obstacle tool.
+
+157
+00:34:47,840 --> 00:35:01,840
+Sorry, that's exactly what that does. It helps you to build like these pin like obstacles, which are basically mimicking bolts.
+
+158
+00:35:01,840 --> 00:35:07,840
+So if you select that, there's like an interactive dialogue which pops up on the right.
+
+159
+00:35:07,840 --> 00:35:12,840
+And then, for example, for the, you select the inner ring.
+
+160
+00:35:12,840 --> 00:35:18,840
+Yep. And then you have different settings you can say also. Yeah, right.
+
+161
+00:35:18,840 --> 00:35:26,840
+And you could also theoretically add a bolt head with that option if you want, but that should help you to be quicker.
+
+162
+00:35:26,840 --> 00:35:27,840
+Okay, thank you.
+
+163
+00:35:27,840 --> 00:35:47,840
+Yeah, you're welcome. I'm out.
+
+164
+00:35:47,840 --> 00:36:16,840
+I'll also do that for these bolts as well.
+
+165
+00:36:16,840 --> 00:36:45,840
+Yeah.
+
+166
+00:36:45,840 --> 00:37:10,840
+Okay, so now when it constructs.
+
+167
+00:37:10,840 --> 00:37:15,840
+The.
+
+168
+00:37:15,840 --> 00:37:20,840
+Now reconstructs the bracket it won't put anything in those bolts that will be there.
+
+169
+00:37:20,840 --> 00:37:25,840
+And it will just go in between, and there's room for the damper, the top of the damper here.
+
+170
+00:37:25,840 --> 00:37:29,840
+And also will go outside of the space constraints.
+
+171
+00:37:29,840 --> 00:37:32,840
+So that should be all good.
+
+172
+00:37:32,840 --> 00:37:46,840
+Hey, would running a preview simulation help.
+
+173
+00:37:46,840 --> 00:38:05,840
+I'll do the pre check again.
+
+174
+00:38:05,840 --> 00:38:08,840
+Oh, because it's fixed.
+
+175
+00:38:08,840 --> 00:38:11,840
+I'll fix that.
+
+176
+00:38:11,840 --> 00:38:14,840
+Hey Hannah it's Frederick again, sorry.
+
+177
+00:38:14,840 --> 00:38:27,840
+I think the way the obstacle connector tool works with a bolt head I think if I saw it correctly.
+
+178
+00:38:27,840 --> 00:38:31,840
+It might interfere with the preserve geometry now.
+
+179
+00:38:31,840 --> 00:38:34,840
+Yeah.
+
+180
+00:38:34,840 --> 00:38:48,840
+I think you would need to select the other ring, like from the other side so that the bolt head basically.
+
+181
+00:38:48,840 --> 00:39:01,840
+I think you would always select the lowest kind of like circle or ring to define the obstacle bolt.
+
+182
+00:39:01,840 --> 00:39:07,840
+So I'm not sure if you can say edit now if you would need to, to build it again.
+
+183
+00:39:07,840 --> 00:39:26,840
+Okay, so like, just like it from this side, you're saying. Yeah, exactly. That's what I meant correctly.
+
+184
+00:39:26,840 --> 00:39:32,840
+So maybe select the entire body on the, on the left and the viewer.
+
+185
+00:39:32,840 --> 00:39:43,840
+Yep. Okay, I guess that's better. Otherwise it only wants to select the face.
+
+186
+00:39:43,840 --> 00:39:49,840
+And I think if you now, right, if you select it from this side.
+
+187
+00:39:49,840 --> 00:40:02,840
+And say old hat, or what does it know it looks still the same. And if you drag it to the other side.
+
+188
+00:40:02,840 --> 00:40:09,840
+Not sure if that did anything.
+
+189
+00:40:09,840 --> 00:40:14,840
+It's strange. Why does it?
+
+190
+00:40:14,840 --> 00:40:22,840
+That look look better I think if you drag it out to the other side.
+
+191
+00:40:22,840 --> 00:40:27,840
+Yeah, but no.
+
+192
+00:40:27,840 --> 00:40:31,840
+Yeah, because if it can't stick out from that side.
+
+193
+00:40:31,840 --> 00:40:38,840
+Then maybe it's just the bolt head that's causing the problem.
+
+194
+00:40:38,840 --> 00:40:44,840
+If I do it like that, that should have a similar effect. Okay, and if you now select bolt head.
+
+195
+00:40:44,840 --> 00:40:48,840
+What is it doing? No, it's strange.
+
+196
+00:40:48,840 --> 00:40:54,840
+Head length. Oh, maybe because head length is zero.
+
+197
+00:40:54,840 --> 00:41:05,840
+Oh, no, no, but it's okay then go back and just select the other side. Sorry about that.
+
+198
+00:41:05,840 --> 00:41:11,840
+So if you undo this, or just say cancel.
+
+199
+00:41:11,840 --> 00:41:16,840
+And select the ring you selected previously.
+
+200
+00:41:16,840 --> 00:41:22,840
+Maybe I was wrong. Yes, select the other like the one you select before. Maybe that wasn't a problem.
+
+201
+00:41:22,840 --> 00:41:25,840
+Maybe you did that correctly.
+
+202
+00:41:25,840 --> 00:41:30,840
+And okay, if you move it out now.
+
+203
+00:41:30,840 --> 00:41:37,840
+That looks better. Yeah, I think that because head length was zero. I think that was the main problem.
+
+204
+00:41:37,840 --> 00:41:42,840
+Okay. Okay, I think that should be better. Yeah, sorry about that.
+
+205
+00:41:42,840 --> 00:41:48,840
+But I think that that looks correct. Yeah. Okay, I'm out.
+
+206
+00:41:48,840 --> 00:41:54,840
+[silence]
+
+207
+00:43:18,840 --> 00:43:22,840
+[silence]
+
+208
+00:43:22,840 --> 00:43:28,840
+If we want accessibility to the bolts, there should probably also be space in front of that.
+
+209
+00:43:28,840 --> 00:43:34,840
+[silence]
+
+210
+00:43:40,840 --> 00:43:44,840
+[silence]
+
+211
+00:43:44,840 --> 00:43:50,840
+[silence]
+
+212
+00:43:50,840 --> 00:43:58,840
+I learned that I should probably add obstacles in front of the bolts for accessibility and ease of maintenance.
+
+213
+00:43:58,840 --> 00:44:04,840
+[silence]
+
+214
+00:44:04,840 --> 00:44:08,840
+[silence]
+
+215
+00:44:08,840 --> 00:44:14,840
+[silence]
+
+216
+00:44:20,840 --> 00:44:24,840
+[silence]
+
+217
+00:44:24,840 --> 00:44:28,840
+So that would be in design.
+
+218
+00:44:28,840 --> 00:44:32,840
+[silence]
+
+219
+00:44:32,840 --> 00:44:36,840
+And I could extrude as a separate body.
+
+220
+00:44:36,840 --> 00:44:40,840
+Yeah, new body.
+
+221
+00:44:40,840 --> 00:44:44,840
+Just by maybe
+
+222
+00:44:44,840 --> 00:44:48,840
+two centimeters.
+
+223
+00:44:48,840 --> 00:44:54,840
+[silence]
+
+224
+00:45:42,840 --> 00:45:46,840
+So I'm just adding those as obstacles.
+
+225
+00:45:46,840 --> 00:45:50,840
+[silence]
+
+226
+00:45:50,840 --> 00:45:54,840
+Assuming that's what it's doing in there.
+
+227
+00:45:54,840 --> 00:45:58,840
+[silence]
+
+228
+00:45:58,840 --> 00:46:02,840
+Hey Hannah, it's Frederick. Sorry to step in.
+
+229
+00:46:02,840 --> 00:46:10,840
+It's always a bit finicky. So maybe you could go to model components in the browser on the left.
+
+230
+00:46:10,840 --> 00:46:18,840
+Right, and then manually hide the bodies that you use as a shell.
+
+231
+00:46:18,840 --> 00:46:24,840
+Hide those there.
+
+232
+00:46:24,840 --> 00:46:30,840
+And then when you show the obstacle geometry down there in the study, right.
+
+233
+00:46:30,840 --> 00:46:36,040
+Right then you it's yeah otherwise with a shell that's always blocking the view
+
+234
+00:46:36,040 --> 00:46:44,040
+but that looks looks good I'm out.
+
+235
+00:46:44,040 --> 00:47:05,960
+Okay so now I yeah I've added those as obstacles and so
+
+236
+00:47:13,240 --> 00:47:16,200
+I'll preview again.
+
+237
+00:47:16,200 --> 00:47:34,040
+So now it allows some space to have access to the bolts.
+
+238
+00:47:34,040 --> 00:47:41,880
+Hey what did you learn from evaluating the preview? Is there anything you would like to change?
+
+239
+00:47:42,760 --> 00:47:51,720
+Other than this no I think everything else looks okay.
+
+240
+00:47:51,720 --> 00:48:08,360
+So I'll select oh wait no that's later so I'll
+
+241
+00:48:08,360 --> 00:48:16,120
+so I think it looks good.
+
+242
+00:48:16,120 --> 00:48:27,960
+Hey Hannah it's Frederick. Okay when you think it's ready to send to the solver you can send it off.
+
+243
+00:48:27,960 --> 00:48:30,520
+Okay.
+
+244
+00:48:30,520 --> 00:48:43,880
+I mean just yeah mentioned that there are some bodies hidden.
+
+245
+00:48:43,880 --> 00:48:55,720
+And you can yep press the generate study. Awesome yay okay.
+
+246
+00:48:56,920 --> 00:49:03,960
+All right and now it takes like as I said like 30 around 30 to 40 minutes until it's solved but
+
+247
+00:49:03,960 --> 00:49:11,800
+also it's four minutes past three. I'm sorry that it took four minutes longer but awesome generally
+
+248
+00:49:11,800 --> 00:49:22,120
+wonderful. Also you stayed more or less in time so let me kind of like stop the recording and then I'll.
+
+249
+00:49:23,400 --> 00:49:29,000
+Hey I am a voice agent here to support you during the design task. I can hear what you are saying
+
+250
+00:49:29,000 --> 00:49:32,440
+and I can see your screen and follow along with you while you work on the task.
+
+251
+00:49:32,440 --> 00:49:48,600
+Occasionally I will ask you questions that are supposed to help you think through the design task.
+
+252
+00:49:48,600 --> 00:49:59,800
+So
+
+253
+00:49:59,800 --> 00:50:07,000
+you
+
+254
+00:50:07,000 --> 00:50:28,360
+okay. Hey here is a question for you. What do you think about the generated design?
+
+255
+00:50:29,160 --> 00:50:30,680
+Is there anything you would like to change?
+
+256
+00:50:30,680 --> 00:50:35,320
+I think the generated design
+
+257
+00:50:35,320 --> 00:50:43,720
+is good. It definitely would fit in the allotted space. There's plenty of space in front of each
+
+258
+00:50:43,720 --> 00:50:54,200
+of the bolt areas to go back and perform maintenance. This one in the back might be
+
+259
+00:50:55,160 --> 00:51:07,880
+a little tight. Yeah I mean the way it looks with all these like lumps along the edge would
+
+260
+00:51:07,880 --> 00:51:13,480
+be hard to specifically manufacture but that might just be this design.
+
+261
+00:51:13,480 --> 00:51:19,320
+Great can you explain what is your goal when comparing the different designs?
+
+262
+00:51:22,520 --> 00:51:33,000
+When comparing them I would say to find you know the one that looks like it would be
+
+263
+00:51:33,000 --> 00:51:39,560
+simplest to manufacture that you could produce multiple in a short amount of time
+
+264
+00:51:39,560 --> 00:51:48,440
+and of course meets all the requirements. It's strong hopefully not too heavy.
+
+265
+00:51:49,000 --> 00:52:01,000
+Yeah it can carry the proper weight but also be yeah lightweight like it says.
+
+266
+00:52:09,240 --> 00:52:17,720
+So I want to compare yeah these aspects to pick the best outcomes.
+
+267
+00:52:17,720 --> 00:52:28,360
+Great can you explain how you think the designs differ regarding aspects of manufacturing and
+
+268
+00:52:28,360 --> 00:52:37,400
+assembly? Yeah so I'm not super familiar with all of these manufacturing methods
+
+269
+00:52:38,040 --> 00:52:43,480
+but like I was saying about this first one I was looking at how it's kind of
+
+270
+00:52:43,480 --> 00:52:48,360
+lumpy and there aren't really like smooth lines and edges.
+
+271
+00:52:48,360 --> 00:52:55,080
+That's something you have to make probably a specific mold for
+
+272
+00:52:55,080 --> 00:53:06,600
+or you know something like this you wouldn't mill but the general shape you know without those very
+
+273
+00:53:06,600 --> 00:53:15,960
+specific kind of textures something more like this how it's smooth edges flat sides
+
+274
+00:53:15,960 --> 00:53:29,400
+that would be easier to manufacture.
+
+275
+00:53:29,400 --> 00:53:49,000
+So yeah with this one it seems like it kind of even though technically there's space in
+
+276
+00:53:49,000 --> 00:53:54,520
+front of that area you wouldn't be able to access that if it were on the damper.
+
+277
+00:53:55,160 --> 00:54:00,360
+You could only access it from the bottom which I believe is not possible
+
+278
+00:54:00,360 --> 00:54:06,440
+or maybe technically that could be possible but it's not the easiest way to access
+
+279
+00:54:06,440 --> 00:54:11,080
+that back bolt back here.
+
+280
+00:54:11,080 --> 00:54:18,040
+And also this one has a lot of material so I assume it would be heavy.
+
+281
+00:54:18,040 --> 00:54:23,160
+Okay and how much do you trust the generated designs?
+
+282
+00:54:23,160 --> 00:54:28,520
+How much do I trust the generated designs?
+
+283
+00:54:28,520 --> 00:54:40,680
+I think that would depend on you know their qualities listed over here factor safety
+
+284
+00:54:40,680 --> 00:54:42,920
+maximum stress.
+
+285
+00:54:52,840 --> 00:54:57,480
+Um I likely wouldn't just like send something like this off to be immediately manufactured
+
+286
+00:54:57,480 --> 00:55:03,880
+I would kind of maybe make some edits or make my own model.
+
+287
+00:55:03,880 --> 00:55:12,040
+Um like I said with you know none of these like kind of curvy chunky areas.
+
+288
+00:55:16,040 --> 00:55:24,760
+But I would say this one I would be fairly confident in it has access from that side back here.
+
+289
+00:55:24,760 --> 00:55:31,640
+Um factor safety two.
+
+290
+00:55:31,640 --> 00:55:38,920
+Raise less than a kilogram.
+
+291
+00:55:38,920 --> 00:55:51,800
+Okay.
+
+292
+00:55:51,800 --> 00:56:02,680
+So
+
+293
+00:56:02,680 --> 00:56:13,560
+so
+
+294
+00:56:13,560 --> 00:56:29,800
+so I'm just kind of going through and comparing all of these metrics over here.
+
+295
+00:56:31,320 --> 00:56:37,080
+I can see that this one is pretty similar to the one that was recommended.
+
+296
+00:56:37,080 --> 00:56:39,800
+I'll come forward.
+
+297
+00:56:39,800 --> 00:56:45,560
+Hey Hannah it's Frederick.
+
+298
+00:56:45,560 --> 00:56:47,400
+Hi.
+
+299
+00:56:47,400 --> 00:56:48,040
+Can you hear me?
+
+300
+00:56:48,040 --> 00:56:49,320
+Yes.
+
+301
+00:56:49,320 --> 00:56:49,800
+Great.
+
+302
+00:56:49,800 --> 00:56:57,240
+Just as a reminder you can also um at the top left of that view you can change the display.
+
+303
+00:56:59,240 --> 00:57:05,160
+So there you have like a card sort of like display when you click on it and you see what I mean and
+
+304
+00:57:05,160 --> 00:57:12,280
+it can be easier sometimes to compare or even the scatter plot on the one further right where it
+
+305
+00:57:12,280 --> 00:57:17,000
+plays out like more like from a stats perspective like minimum factor of safety and mass.
+
+306
+00:57:17,000 --> 00:57:24,200
+And then I think also you can if you go back to the to the gallery view right you can
+
+307
+00:57:24,920 --> 00:57:30,760
+I think when you hover over one of the designs yeah you can select it and I think
+
+308
+00:57:30,760 --> 00:57:37,240
+by that select an outcome or can you star it um I think you can then
+
+309
+00:57:37,240 --> 00:57:40,920
+compare even multiple ones together.
+
+310
+00:57:40,920 --> 00:57:53,480
+All right click and and star it I think how did that work uh no there is some some way maybe if
+
+311
+00:57:53,480 --> 00:58:00,360
+you I think if you have multiple ones but there's the idea that I think if you select multiple ones
+
+312
+00:58:00,360 --> 00:58:07,400
+you can compare them even maybe on the bottom it says multiple selection I'm sorry I'm not I'm not
+
+313
+00:58:07,400 --> 00:58:14,440
+entirely sure how it works yeah click that one okay oh yeah right so that might be might be
+
+314
+00:58:14,440 --> 00:58:19,080
+useful okay I'm out just a couple of hints thank you.
+
+315
+00:58:19,080 --> 00:58:30,680
+Thank you.
+
+316
+00:58:30,680 --> 00:58:34,280
+Thank you.
+
+317
+00:58:41,480 --> 00:58:49,080
+Thank you.
+
+318
+00:58:49,080 --> 00:58:52,680
+Thank you.
+
+319
+01:00:18,120 --> 01:00:27,000
+So it seems like from comparing these that a displacement of under a millimeter is pretty good
+
+320
+01:00:27,000 --> 01:00:32,120
+and a mass of under a kilogram is pretty good.
+
+321
+01:00:32,120 --> 01:00:38,440
+When comparing all of these that seems like the general range
+
+322
+01:00:38,440 --> 01:00:42,360
+like something like this seems like too much of a displacement
+
+323
+01:00:44,360 --> 01:00:50,920
+compared to how the majority of these are under a millimeter. I'm saying with
+
+324
+01:00:50,920 --> 01:00:56,040
+the mass a lot of these ones down here are over a kilogram but then these ones
+
+325
+01:00:56,040 --> 01:01:02,120
+are closer to that one kilogram range.
+
+326
+01:01:02,120 --> 01:01:06,120
+Thank you.
+
+327
+01:01:52,440 --> 01:02:00,360
+This one is super lightweight and has a comparable max stress to all of these other
+
+328
+01:02:00,360 --> 01:02:04,120
+heavier models so I would say that is one I would keep.
+
+329
+01:02:04,120 --> 01:02:12,440
+Up here.
+
+330
+01:02:12,440 --> 01:02:22,440
+Hey, what impact and difference does the manufacturing method have on the generated geometry?
+
+331
+01:02:22,440 --> 01:02:33,880
+Well this says additive manufacturing which means that you're more able to do
+
+332
+01:02:33,880 --> 01:02:38,680
+different kinds of shapes. There are fewer limitations
+
+333
+01:02:41,160 --> 01:02:45,640
+on what kind of lines and shapes you can do as far as I know.
+
+334
+01:02:45,640 --> 01:02:50,680
+So that should be fine.
+
+335
+01:02:50,680 --> 01:02:56,120
+Hannah it's Frederick again. I just saw like there's like a star
+
+336
+01:02:56,120 --> 01:03:04,840
+in that view when you go to the top menu bar and then to the left you see like a tagging you can
+
+337
+01:03:04,840 --> 01:03:09,000
+add it to favorites. I think that's how it works so if you want to kind of like say okay that's
+
+338
+01:03:09,000 --> 01:03:15,480
+one of the designs I want to keep you can say star and then if you go back I think it keeps it.
+
+339
+01:03:15,480 --> 01:03:21,560
+Yeah right and the top right in the gallery you see there's a star
+
+340
+01:03:21,560 --> 01:03:26,360
+so that's also how you can keep track which ones you.
+
+341
+01:03:26,360 --> 01:03:36,440
+Okay, if you give favor. Sorry, so now okay wait one second you see it now here.
+
+342
+01:03:38,600 --> 01:03:44,280
+Okay so and the thumbs up are the ones Fusion suggests which also the ones up here.
+
+343
+01:03:44,280 --> 01:03:53,960
+Okay and I'll pick three or four for the three. Okay right unless you want to make
+
+344
+01:03:53,960 --> 01:03:59,880
+changes but you can also just select three. Okay all right I'm out.
+
+345
+01:03:59,880 --> 01:04:11,160
+So
+
+346
+01:04:11,160 --> 01:04:22,440
+so
+
+347
+01:04:22,440 --> 01:04:36,440
+I think I'll also select this one because
+
+348
+01:04:38,280 --> 01:04:43,400
+of its pretty comparable statistics. The displacement is less than a millimeter and
+
+349
+01:04:43,400 --> 01:04:51,000
+it's fairly light considering how much material there is with a strength you know comparable to
+
+350
+01:04:51,000 --> 01:05:05,000
+the rest of them and though it says the method is casting it seems like it could be done with
+
+351
+01:05:05,000 --> 01:05:11,080
+other methods but I'm no manufacturing expert.
+
+352
+01:05:11,080 --> 01:05:21,160
+So
+
+353
+01:05:21,160 --> 01:05:31,240
+so
+
+354
+01:05:45,080 --> 01:05:52,520
+hey how important is the mass to strength ratio of the pieces in your evaluation?
+
+355
+01:05:52,520 --> 01:05:53,240
+We would want
+
+356
+01:05:53,240 --> 01:06:04,920
+low mass to high strength. I would say that's pretty important considering that our goals are
+
+357
+01:06:04,920 --> 01:06:14,840
+to minimize the weight and maximize the strength. So I think from this one
+
+358
+01:06:14,840 --> 01:06:25,720
+yeah so this other one has a much better mass to strength ratio
+
+359
+01:06:25,720 --> 01:06:32,600
+so maybe I should rethink that.
+
+360
+01:06:39,640 --> 01:06:53,400
+Oh this one is even lighter than that first one that I picked 0.536 kilograms.
+
+361
+01:06:53,400 --> 01:07:07,400
+This one has a really high factor of safety.
+
+362
+01:07:07,400 --> 01:07:17,640
+But it seems like mass to strength is more important.
+
+363
+01:07:17,640 --> 01:07:24,600
+So inevitably we'll have to sacrifice.
+
+364
+01:07:36,600 --> 01:07:44,200
+I'm not sure but it seems that aluminum provides the most lightweight solution
+
+365
+01:07:44,200 --> 01:07:53,320
+because all of these recommended outcomes are aluminum because they have that mass
+
+366
+01:07:53,320 --> 01:07:58,280
+to strength ratio that minimizes mass and maximizes strength whereas
+
+367
+01:08:03,080 --> 01:08:07,480
+yeah like stainless steel they're all pretty high in the mass category
+
+368
+01:08:07,480 --> 01:08:18,360
+and same with iron which it gives them a higher factor of safety but or not necessarily for
+
+369
+01:08:18,360 --> 01:08:25,400
+stainless steel but aluminum seems to really maximize how lightweight it can be while still
+
+370
+01:08:25,400 --> 01:08:38,200
+being strong. So I think I'll also start this.
+
+371
+01:08:38,200 --> 01:08:48,840
+So that should be three.
+
+372
+01:08:48,840 --> 01:08:55,560
+[BLANK_AUDIO]
+
