@@ -28,7 +28,7 @@ function parseArguments() {
 
 // Function to read prompt instructions from a file
 function readPromptInstructions(assistant, version) {
-    const promptFilePath = path.join('system_prompts', `${assistant}_${version}.txt`);
+    const promptFilePath = path.join('system_prompts_openAI', `${assistant}_${version}.txt`);
     if (!fs.existsSync(promptFilePath)) {
         console.error(`Prompt file not found: ${promptFilePath}`);
         process.exit(1);
@@ -107,14 +107,12 @@ async function main() {
                 wozIndex++;
             }
         }
-
-        // Save the generated questions and understanding to a file or log them
         const outputFileName = `${new Date().toISOString().replace(/[:-]/g, '').split('.')[0]}_${assistant}.csv`;
         const outputFilePath = path.join('data', dataFile, outputFileName);
-        const metadata = `Agent,${assistant}\nVersion,${version}\nModel,${engine}\n`;
-        const headers = 'Times,Generated Responses,Understanding of Agent\n';
-        const rows = generatedQuestions.map((q, idx) => `${q.timestamp},${q.generatedQuestion},${assistantUnderstanding[idx].understanding}`).join('\n');
-
+        const metadata = `Agent;${assistant}\nVersion;${version}\nModel;${engine}\n`;
+        const headers = 'Times;Generated Responses;Understanding of Agent\n';
+        const rows = generatedQuestions.map((q, idx) => `${q.timestamp};"${q.generatedQuestion.replace(/"/g, '""')}";"${assistantUnderstanding[idx].understanding.replace(/"/g, '""')}"`).join('\n');
+        
         fs.writeFileSync(outputFilePath, `${metadata}${headers}${rows}`);
     }
 
