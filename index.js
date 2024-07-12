@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { OpenAI } from 'openai';
-import readTranscription from './transcriptReader.js';
+import {readTranscription} from './transcriptReader.js';
 import readWOZQuestions from './wozQuestionReader.js';
 import { config } from 'dotenv';
 config();
@@ -27,6 +27,7 @@ function parseArguments() {
 }
 
 // Function to read prompt instructions from a file
+// find a way to stop reading when there are comments 
 function readPromptInstructions(assistant, version) {
     const promptFilePath = path.join('system_prompts_openAI', `${assistant}_${version}.txt`);
     if (!fs.existsSync(promptFilePath)) {
