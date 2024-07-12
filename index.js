@@ -1,8 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { OpenAI } from 'openai';
-import {readTranscription} from './transcriptReader.js';
-import readWOZQuestions from './wozQuestionReader.js';
+import {readTranscription, readWOZQuestions} from './transcriptReader.js';
 import { config } from 'dotenv';
 config();
 

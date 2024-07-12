@@ -14,10 +14,15 @@ def create_folders():
         # Create the main folder (P01, P02, ..., P28)
         os.makedirs(folder_path, exist_ok=True)
         
-        # Create the subfolders (pythia, socratais, hephaistus) inside each main folder
-        for subfolder in ['pythia', 'socratais', 'hephaistus']:
+        # Create the subfolders (openai, claude) inside each main folder
+        for subfolder in ['openai', 'claude']:
             subfolder_path = os.path.join(folder_path, subfolder)
             os.makedirs(subfolder_path, exist_ok=True)
+            
+            # Create the subsubfolders (pythia, socratais, hephaistus) inside each subfolder
+            for subsubfolder in ['pythia', 'socratais', 'hephaistus']:
+                subsubfolder_path = os.path.join(subfolder_path, subsubfolder)
+                os.makedirs(subsubfolder_path, exist_ok=True)
     
     print("Folders created successfully!")
 
