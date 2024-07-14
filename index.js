@@ -26,14 +26,15 @@ function parseArguments() {
 }
 
 // Function to read prompt instructions from a file
-// find a way to stop reading when there are comments 
 function readPromptInstructions(assistant, version) {
     const promptFilePath = path.join('system_prompts_openAI', `${assistant}_${version}.txt`);
     if (!fs.existsSync(promptFilePath)) {
         console.error(`Prompt file not found: ${promptFilePath}`);
         process.exit(1);
     }
-    return fs.readFileSync(promptFilePath, 'utf-8');
+    systemPrompt = fs.readFileSync(promptFilePath, 'utf-8');
+    return systemPrompt.substring(0, systemPrompt.indexOf("Comments:")); // returns prompt up until comments
+
 }
 
 async function main() {
