@@ -8,10 +8,16 @@
 
 - The command to run the script should be:
   ```bash
-  node index.js [FOLDER_NAME] [TRANSCRIPT] [SCREENSHOT] [ENGINE] [MODEL] [SYSTEM_PROMPT]
+  node index.js [FOLDER_NAME] [TRANSCRIPT] [SCREENSHOT] [ENGINE] [MODEL] [ASSISTANT]
   ```
 
 - Depending on the engine specified, the script should call either `openai.js` or `claude.js`. Both of these scripts need to be written.
+
+[TRANSCRIPT] Whether the transcript contains the wizard questions or not. 
+[SCREENSHOT] Whether the data includes screenshots of the user's work or not. 
+[ENGINE] The API we are using - OpenAI or Claude.
+[MODEL] The model we are using for the specific APIs. OpenAI - 4 or 4o. Claude - sonnet.
+[ASSISTANT] The assistant version we are testing: Pythia, Socratais, or Hephaistus. 
 
 ### Tasks for `openai.js`
 

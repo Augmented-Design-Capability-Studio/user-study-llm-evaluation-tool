@@ -5,7 +5,8 @@ import {readTranscription, readWOZQuestions} from './transcriptReader.js';
 import { config } from 'dotenv';
 config();
 
-const openai = new OpenAI({ apiKey: process.env.OPEN_AI_KEY });
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+// const claude = new claude({ apiKey: process.env.CLAUDE_KEY });
 
 // Helper function to convert time format (hh:mm:ss,ms or hh:mm:ss) to seconds
 function timeToSeconds(time) {
@@ -17,17 +18,18 @@ function timeToSeconds(time) {
 // Function to parse command-line arguments
 function parseArguments() {
     const args = process.argv.slice(2);
-    if (args.length !== 4) {
-        console.error('Usage: node index.js [p-?] [pythia|socratais|hephaestus] [v-?] [4|4o]');
+    if (args.length !== 6) {
+        console.error('Usage: node index.js [p-?] [wizard-y/n] [screenshots-y/n] [openAI|claude] [4|4o|sonnet] [pythia|socratais|hephaistus] [v-?]');
         process.exit(1);
     }
-    const [dataFile, assistant, version, engine] = args;
-    return { dataFile, assistant, version, engine };
+    // OLD - dataFile, engine, version -> model, assistant
+    const [dataFile, transcript, screenshot, engine, model, assistant, version] = args;
+    return { dataFile, transcript, screenshot, engine, model, assistant, version };
 }
 
 // Function to read prompt instructions from a file
 function readPromptInstructions(assistant, version) {
-    const promptFilePath = path.join('system_prompts_openAI', `${assistant}_${version}.txt`);
+    const promptFilePath = path.join('system_prompts', `${assistant}`, `${assistant}_${version}.txt`);
     if (!fs.existsSync(promptFilePath)) {
         console.error(`Prompt file not found: ${promptFilePath}`);
         process.exit(1);
@@ -38,18 +40,24 @@ function readPromptInstructions(assistant, version) {
 }
 
 async function main() {
-    const { dataFile, assistant, version, engine } = parseArguments();
+    const { dataFile, engine, model, assistant, version } = parseArguments();
+    // sets file paths
     const transcriptFilePath = `data/${dataFile}/${dataFile}_DesignSession.srt`;
     const wozQuestionsFilePath = `data/${dataFile}/${dataFile}.csv`;
+    // TODO: const screenshotFilePath = `data/${dataFile}/${dataFile}_Screenshots.srt`;
 
+    // prompt
     const promptScript = readPromptInstructions(assistant, version);
 
+    // sets the transcripts & screenshots
     const transcript = readTranscription(transcriptFilePath);
     const wozQuestions = await readWOZQuestions(wozQuestionsFilePath);
+    // TODO: const screenshot = readScreenshots(screenshotFilePath);
 
     const generatedQuestions = [];
     const assistantUnderstanding = [];
 
+    // processes transcript
     async function processTranscript() {
         let messages = [
             { role: 'system', content: 'You are a helpful assistant.' },
@@ -59,6 +67,7 @@ async function main() {
         const wozTimestamps = Object.keys(wozQuestions).map(timeToSeconds);
         let wozIndex = 0;
 
+        // maps the generated questions / WoZ questions to timestamps
         for (let i = 0; i < transcript.length; i++) {
             const entry = transcript[i];
             const entryTimeInSeconds = timeToSeconds(entry.start);
@@ -68,7 +77,8 @@ async function main() {
             if (wozIndex < wozTimestamps.length && entryTimeInSeconds >= wozTimestamps[wozIndex]) {
                 const wozQuestion = wozQuestions[Object.keys(wozQuestions)[wozIndex]];
 
-                // Ask the assistant to generate a question for the user
+                // Ask the assistant to generate a question for the user (openAI)
+                // TODO: add a new function that switches the model type
                 const response = await openai.chat.completions.create({
                     model: `gpt-${engine}`,
                     messages: [
@@ -108,6 +118,7 @@ async function main() {
                 wozIndex++;
             }
         }
+        // naming & metadata
         const outputFileName = `${new Date().toISOString().replace(/[:-]/g, '').split('.')[0]}_${assistant}.csv`;
         const outputFilePath = path.join('data', dataFile, outputFileName);
         const metadata = `Agent;${assistant}\nVersion;${version}\nModel;${engine}\n`;
