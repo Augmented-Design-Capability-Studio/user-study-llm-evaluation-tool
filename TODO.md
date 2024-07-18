@@ -1,29 +1,33 @@
-# TODO for Claire
+# TODO / Goals for Claire
 
-## Understand `index.js`
+## Understand `index.js` - Completed 7/15
 - Familiarize yourself with the code in `index.js`.
 - Ask Anna any questions you have for clarification.
 
-## Modify `index.js`
+## Modify `index.js` - Completed 7/17
 
-- The command to run the script should be:
+- The command to run the script will be:
   ```bash
-  node index.js [FOLDER_NAME] [TRANSCRIPT] [SCREENSHOT] [ENGINE] [MODEL] [ASSISTANT]
+  node index.js [DATA_FILE] [TRANSCRIPT] [SCREENSHOT] [ENGINE] [ASSISTANT-VERSION]
   ```
 
 - Depending on the engine specified, the script should call either `openai.js` or `claude.js`. Both of these scripts need to be written.
 
 [TRANSCRIPT] Whether the transcript contains the wizard questions or not. 
+
 [SCREENSHOT] Whether the data includes screenshots of the user's work or not. 
+
 [ENGINE] The API we are using - OpenAI or Claude.
-[MODEL] The model we are using for the specific APIs. OpenAI - 4 or 4o. Claude - sonnet.
+
+[MODEL] The model we are using for the specific APIs. OpenAI - 4o. Claude - sonnet.
+
 [ASSISTANT] The assistant version we are testing: Pythia, Socratais, or Hephaistus. 
 
 ### Tasks for `openai.js`
 
 - Load the system prompt up until the comment section and feed it to the API.
 - Read the correct transcript (either Wizard or No Wizard).
-- Load screenshots if necessary.
+- Load screenshots if necessary. **POSTPONED FOR NOW**
 - Loop through the transcripts.
 - When the timestamp is hit for the Wizard question, make an API call to OpenAI to get:
   - **Generated Response**: The assistant's question.
@@ -66,6 +70,11 @@ data/
 - Ensure that the scripts are thoroughly tested.
 - Verify that the generated CSV files contain the correct metadata and data.
 - Confirm that the output directory structure matches the specified format.
+
+## videoReader.js
+
+- Extract keyframes AND frames at WoZ timestamps from the user study video.
+- Add all the frames to specified folders in the GDrive. 
 
 ---
 
