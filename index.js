@@ -1,55 +1,64 @@
 import fs from 'fs';
 import path from 'path';
-import { OpenAI } from 'openai';
-import {readTranscription, readWOZQuestions} from './transcriptReader.js';
+import { generateQuestionOpenAI, generateUnderstandingOpenAI } from './openai.js';
+import { generateQuestionClaude, generateUnderstandingClaude, formatMessagesForClaude } from './claude.js';
+import { readTranscription, readWOZQuestions } from './transcriptReader.js';
+// import { extract_keyframes } from './videoReader.js';
 import { config } from 'dotenv';
 config();
 
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-// const claude = new claude({ apiKey: process.env.CLAUDE_KEY });
-
-// Helper function to convert time format (hh:mm:ss,ms or hh:mm:ss) to seconds
-function timeToSeconds(time) {
-    const [hours, minutes, seconds] = time.split(':');
-    const [secs, ms] = seconds.split(',');
-    return Number(hours) * 3600 + Number(minutes) * 60 + Number(secs) + (ms ? Number(ms) / 1000 : 0);
-}
+// Helper function to convert time format to seconds
+function timeToSeconds(timeString) {
+    const parts = timeString.split(':');
+    const hours = parseInt(parts.length === 3 ? parts[0] : '0', 10);
+    const minutes = parseInt(parts.length === 3 ? parts[1] : parts[0], 10);
+    const seconds = parseInt(parts.length === 3 ? parts[2] : parts[1], 10);
+    return hours * 3600 + minutes * 60 + seconds;
+  }
 
 // Function to parse command-line arguments
-function parseArguments() {
+export function parseArguments() {
     const args = process.argv.slice(2);
-    if (args.length !== 6) {
-        console.error('Usage: node index.js [p-?] [wizard-y/n] [screenshots-y/n] [openAI|claude] [4|4o|sonnet] [pythia|socratais|hephaistus] [v-?]');
+    if (args.length !== 5) {
+        console.error('Usage: node index.js [P?] [wizard-y/n] [screenshot-y/n] [openAI|claude]  [pythia-v?|socratais-v?|hephaistus-v?]');
         process.exit(1);
     }
-    // OLD - dataFile, engine, version -> model, assistant
-    const [dataFile, transcript, screenshot, engine, model, assistant, version] = args;
-    return { dataFile, transcript, screenshot, engine, model, assistant, version };
+    // Sets variables
+    const [dataFile, transcript, screenshot, engine, assistant_version] = args;
+
+    // Separates assistant & version into two variables
+    const assistant = assistant_version.substring(0, assistant_version.indexOf("-"));
+    const version = assistant_version.substring(assistant_version.indexOf("-") + 1);
+
+    // Returns variables
+    return { dataFile, transcript, screenshot, engine, assistant, version };
 }
 
 // Function to read prompt instructions from a file
-function readPromptInstructions(assistant, version) {
+export function readPromptInstructions(assistant, version) {
     const promptFilePath = path.join('system_prompts', `${assistant}`, `${assistant}_${version}.txt`);
     if (!fs.existsSync(promptFilePath)) {
         console.error(`Prompt file not found: ${promptFilePath}`);
         process.exit(1);
     }
-    systemPrompt = fs.readFileSync(promptFilePath, 'utf-8');
+    const systemPrompt = fs.readFileSync(promptFilePath, 'utf-8');
     return systemPrompt.substring(0, systemPrompt.indexOf("Comments:")); // returns prompt up until comments
-
 }
 
+// Generates the assistant questions, understanding, and .cvs files
 async function main() {
-    const { dataFile, engine, model, assistant, version } = parseArguments();
-    // sets file paths
+    
+    const { dataFile, engine, assistant, version } = parseArguments();
+
+    // Sets file paths
     const transcriptFilePath = `data/${dataFile}/${dataFile}_DesignSession.srt`;
     const wozQuestionsFilePath = `data/${dataFile}/${dataFile}.csv`;
     // TODO: const screenshotFilePath = `data/${dataFile}/${dataFile}_Screenshots.srt`;
 
-    // prompt
+    // Prompt
     const promptScript = readPromptInstructions(assistant, version);
 
-    // sets the transcripts & screenshots
+    // Sets the transcripts & screenshots
     const transcript = readTranscription(transcriptFilePath);
     const wozQuestions = await readWOZQuestions(wozQuestionsFilePath);
     // TODO: const screenshot = readScreenshots(screenshotFilePath);
@@ -57,17 +66,16 @@ async function main() {
     const generatedQuestions = [];
     const assistantUnderstanding = [];
 
-    // processes transcript
+    // Processes transcript
     async function processTranscript() {
         let messages = [
-            { role: 'system', content: 'You are a helpful assistant.' },
             { role: 'system', content: promptScript }
         ];
 
-        const wozTimestamps = Object.keys(wozQuestions).map(timeToSeconds);
+        const wozTimestamps = wozQuestions.map(question => timeToSeconds(question.time));
+        
         let wozIndex = 0;
-
-        // maps the generated questions / WoZ questions to timestamps
+        // Maps the generated questions / WoZ questions to timestamps
         for (let i = 0; i < transcript.length; i++) {
             const entry = transcript[i];
             const entryTimeInSeconds = timeToSeconds(entry.start);
@@ -77,58 +85,145 @@ async function main() {
             if (wozIndex < wozTimestamps.length && entryTimeInSeconds >= wozTimestamps[wozIndex]) {
                 const wozQuestion = wozQuestions[Object.keys(wozQuestions)[wozIndex]];
 
-                // Ask the assistant to generate a question for the user (openAI)
-                // TODO: add a new function that switches the model type
-                const response = await openai.chat.completions.create({
-                    model: `gpt-${engine}`,
-                    messages: [
-                        ...messages,
-                        { role: 'user', content: 'What question would you ask the user here?' }
-                    ],
-                });
+                // Instructions if engine runs on OpenAI
+                if (engine === "openAI"){
 
-                const assistantMessage = response.choices[0].message.content;
-                console.log('Generated Question:', assistantMessage);
+                    let response;
+                    try {
+                        const questionGenerated = await generateQuestionOpenAI(messages);
+                        response = questionGenerated.response; 
+                        console.log(response);
+                    } catch (error) {
+                        console.error('Error generating OpenAI question:', error);
+                    }
 
-                generatedQuestions.push({
-                    timestamp: entry.start,
-                    generatedQuestion: assistantMessage,
-                    wozQuestion: wozQuestion
-                });
+                    // Check if response is defined (openAI)
+                    let assistantMessage;
+                    if (response) { 
+                        assistantMessage = response.choices[0].message.content;
+                        console.log('Generated Question:', assistantMessage);
+                    } else {
+                        console.error('Question is undefined.');
+                    }
 
-                // Generate the assistant's understanding of the user's progress
-                const understandingResponse = await openai.chat.completions.create({
-                    model: `gpt-${engine}`,
-                    messages: [
-                        ...messages,
-                        { role: 'user', content: 'Provide a short summary (1-2 sentences) of the user\'s progress and current state in the design task.' }
-                    ],
-                });
+                    // Push messages to generatedQuestions (openAI)
+                    generatedQuestions.push({
+                        timestamp: entry.start,
+                        generatedQuestion: assistantMessage,
+                        wozQuestion: wozQuestion
+                    });
 
-                const assistantUnderstandingMessage = understandingResponse.choices[0].message.content;
-                console.log('Assistant Understanding:', assistantUnderstandingMessage);
+                    // Generate the assistant's understanding of the user's progress (openAI)
+                    let understandingResponse;
+                    try {
+                        const understandingGenerated = await generateUnderstandingOpenAI(messages);
+                        understandingResponse = understandingGenerated.understandingResponse; 
+                        console.log(understandingResponse);
+                    } catch (error) {
+                        console.error('Error generating OpenAI understanding:', error);
+                    }
 
-                assistantUnderstanding.push({
-                    timestamp: entry.start,
-                    understanding: assistantUnderstandingMessage
-                });
+                    let assistantUnderstandingMessage;
+                    if (understandingResponse) { 
+                        assistantUnderstandingMessage = understandingResponse.choices[0].message.content;
+                        console.log('Assistant Understanding:', assistantUnderstandingMessage);
+                    } else {
+                        console.error('Response is undefined.');
+                    }
 
-                messages.push({ role: 'assistant', content: assistantMessage });
+                    // Push messages to assistantUnderstanding (openAI)
+                    assistantUnderstanding.push({
+                        timestamp: entry.start,
+                        understanding: assistantUnderstandingMessage
+                    });
 
-                wozIndex++;
+                    messages.push({ role: 'assistant', content: assistantMessage });
+
+                    wozIndex++;
+                }
+
+                // Instructions if engine runs on Claude
+                else if (engine === "claude"){
+
+                    let response;
+                    
+                    messages = formatMessagesForClaude(messages);
+
+                    try {
+                        const questionGenerated = await generateQuestionClaude(messages, promptScript);
+                        response = questionGenerated.response; 
+                        console.log(response);
+                    } catch (error) {
+                        console.error('Error generating Claude question:', error);
+                    }
+
+                    // Check if response is defined (claude)
+                    let assistantMessage;
+                    if (response) { 
+                        assistantMessage = response.content[0].text;
+                        console.log('Generated Question:', assistantMessage);
+                    } else {
+                        console.error('Question is undefined.');
+                    }
+
+                    // Push messages to generatedQuestions (claude)
+                    generatedQuestions.push({
+                        timestamp: entry.start,
+                        generatedQuestion: assistantMessage,
+                        wozQuestion: wozQuestion
+                    });
+
+                    // Generate the assistant's understanding of the user's progress (claude)
+                    let understandingResponse;
+                    try {
+                        const understandingGenerated = await generateUnderstandingClaude(messages, promptScript);
+                        understandingResponse = understandingGenerated.understandingResponse; 
+                        console.log(understandingResponse);
+                    } catch (error) {
+                        console.error('Error generating Claude understanding:', error);
+                    }
+
+                    let assistantUnderstandingMessage;
+                    if (understandingResponse) { 
+                        assistantUnderstandingMessage = understandingResponse.content[0].text;
+                        console.log('Assistant Understanding:', assistantUnderstandingMessage);
+                    } else {
+                        console.error('Response is undefined.');
+                    }
+
+                    // Push messages to assistantUnderstanding (claude)
+                    assistantUnderstanding.push({
+                        timestamp: entry.start,
+                        understanding: assistantUnderstandingMessage
+                    });
+
+                    messages.push({ role: 'assistant', content: assistantMessage });
+
+                    wozIndex++;
+
+                }
+
+                // Instructions if engine specified is not OpenAI or Claude
+                else {
+                    console.error('Engine must either be \'openAI\' or \'claude\'.');
+                }
+
             }
         }
+
         // naming & metadata
-        const outputFileName = `${new Date().toISOString().replace(/[:-]/g, '').split('.')[0]}_${assistant}.csv`;
+        const outputFileName = `${new Date().toISOString().replace(/[:-]/g, '').split('.')[0]}_${engine}_${assistant}-${version}.csv`;
         const outputFilePath = path.join('data', dataFile, outputFileName);
-        const metadata = `Agent;${assistant}\nVersion;${version}\nModel;${engine}\n`;
-        const headers = 'Times;Generated Responses;Understanding of Agent\n';
+        const metadata = `Agent;${assistant}\nVersion;${version}\nEngine;${engine}\n`;
+        const headers = 'Times;Generated Responses;Understanding of Agent\n'
+
         const rows = generatedQuestions.map((q, idx) => `${q.timestamp};"${q.generatedQuestion.replace(/"/g, '""')}";"${assistantUnderstanding[idx].understanding.replace(/"/g, '""')}"`).join('\n');
         
         fs.writeFileSync(outputFilePath, `${metadata}${headers}${rows}`);
     }
 
     processTranscript().catch(console.error);
+
 }
 
 main().catch(console.error);

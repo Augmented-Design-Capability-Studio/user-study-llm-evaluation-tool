@@ -26,9 +26,10 @@ function timeToSeconds(time) {
     const parts = time.split(/[:.,]/).map(Number);  // Split by colon, period, or comma
     const [hours, minutes, seconds, milliseconds] = parts;
     let totalSeconds = hours * 1200 + minutes * 60 + seconds;
-    return totalSeconds
+    return totalSeconds;
 }
 
+// Function to read video transcription from a CSV file
 export function readTranscription(filePath) {
     const data = fs.readFileSync(filePath, 'utf8');
     
@@ -68,8 +69,12 @@ export async function readWOZQuestions(filePath) {
             })
             .on('end', () => {
                 resolve(questions);
+                console.log('Successfully read and parsed the CSV file!');
             })
-            .on('error', reject);
+            .on('error', (error) => {
+                console.error('Error reading or parsing the CSV file:', error);
+                reject(error);
+            });
     });
 }
 
@@ -121,7 +126,6 @@ export function removeWOZQuestions(transcript, questions) {
     });
     return removedTranscript;
 }
-
 
 export function saveTranscriptToFile(filePath, transcript) {
     const data = transcript.map(entry => `${entry.start} --> ${entry.end}\n${entry.content.trim()}\n`).join('\n');

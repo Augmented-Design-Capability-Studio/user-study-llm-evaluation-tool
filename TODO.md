@@ -15,8 +15,7 @@
 
 [TRANSCRIPT] Whether the transcript contains the wizard questions or not. 
 [SCREENSHOT] Whether the data includes screenshots of the user's work or not. 
-[ENGINE] The API we are using - OpenAI or Claude.
-[MODEL] The model we are using for the specific APIs. OpenAI - 4 or 4o. Claude - sonnet.
+[ENGINE] The API we are using - OpenAI (4o) or Claude (sonnet).
 [ASSISTANT] The assistant version we are testing: Pythia, Socratais, or Hephaistus. 
 
 ### Tasks for `openai.js`

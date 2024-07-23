@@ -11,6 +11,8 @@
   "description": "",
   "type": "module",
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.24.3",
+    "anthropic": "^0.0.0",
     "csv-parser": "^3.0.0",
     "dotenv": "^16.4.5",
     "ffmpeg-static": "^5.2.0",
