@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { generateQuestionOpenAI, generateUnderstandingOpenAI } from './openai.js';
 import { generateQuestionClaude, generateUnderstandingClaude, formatMessagesForClaude } from './claude.js';
-import { readTranscription, readWOZQuestions } from './transcriptReader.js';
+import { readTranscription, readWOZQuestions, injectWOZQuestions, removeWOZQuestions } from './transcriptReader.js';
 // import { extract_keyframes } from './videoReader.js';
 import { config } from 'dotenv';
 config();
@@ -24,14 +24,14 @@ export function parseArguments() {
         process.exit(1);
     }
     // Sets variables
-    const [dataFile, transcript, screenshot, engine, assistant_version] = args;
+    const [dataFile, transcript_wizard, screenshot, engine, assistant_version] = args;
 
     // Separates assistant & version into two variables
     const assistant = assistant_version.substring(0, assistant_version.indexOf("-"));
     const version = assistant_version.substring(assistant_version.indexOf("-") + 1);
 
     // Returns variables
-    return { dataFile, transcript, screenshot, engine, assistant, version };
+    return { dataFile, transcript_wizard, screenshot, engine, assistant, version };
 }
 
 // Function to read prompt instructions from a file
@@ -48,7 +48,7 @@ export function readPromptInstructions(assistant, version) {
 // Generates the assistant questions, understanding, and .cvs files
 async function main() {
     
-    const { dataFile, engine, assistant, version } = parseArguments();
+    const { dataFile, transcript_wizard, engine, assistant, version } = parseArguments();
 
     // Sets file paths
     const transcriptFilePath = `data/${dataFile}/${dataFile}_DesignSession.srt`;
@@ -58,10 +58,24 @@ async function main() {
     // Prompt
     const promptScript = readPromptInstructions(assistant, version);
 
-    // Sets the transcripts & screenshots
-    const transcript = readTranscription(transcriptFilePath);
+    // Sets the transcripts (WOZ Questions or not)
+    let transcript = readTranscription(transcriptFilePath);
     const wozQuestions = await readWOZQuestions(wozQuestionsFilePath);
+
+    if (transcript_wizard === "wizard-y"){
+        transcript = injectWOZQuestions(transcript, wozQuestions);
+        console.log("transcript: ", transcript);
+    }
+    else if (transcript_wizard === "wizard-n"){
+        transcript = removeWOZQuestions(transcript, wozQuestions);
+    }
+    else {
+        console.error('Transcript must either be \'wizard-y\' or \'wizard-n\'.');
+    }
+
+    // Sets the screenshots
     // TODO: const screenshot = readScreenshots(screenshotFilePath);
+
 
     const generatedQuestions = [];
     const assistantUnderstanding = [];
@@ -214,7 +228,7 @@ async function main() {
         // naming & metadata
         const outputFileName = `${new Date().toISOString().replace(/[:-]/g, '').split('.')[0]}_${engine}_${assistant}-${version}.csv`;
         const outputFilePath = path.join('data', dataFile, outputFileName);
-        const metadata = `Agent;${assistant}\nVersion;${version}\nEngine;${engine}\n`;
+        const metadata = `Agent;${assistant}\nVersion;${version}\nEngine;${engine}\nTranscript;${transcript_wizard}\n`;
         const headers = 'Times;Generated Responses;Understanding of Agent\n'
 
         const rows = generatedQuestions.map((q, idx) => `${q.timestamp};"${q.generatedQuestion.replace(/"/g, '""')}";"${assistantUnderstanding[idx].understanding.replace(/"/g, '""')}"`).join('\n');
