@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
-import { generateQuestionOpenAI, generateUnderstandingOpenAI } from './openai.js';
-import { generateQuestionClaude, generateUnderstandingClaude, formatMessagesForClaude } from './claude.js';
+import { estimateCostOpenAI, generateQuestionOpenAI, generateUnderstandingOpenAI } from './openai.js';
+import { generateQuestionClaude, generateUnderstandingClaude, formatMessagesForClaude, estimateCostClaude } from './claude.js';
 import { readTranscription, readWOZQuestions, injectWOZQuestions, removeWOZQuestions } from './transcriptReader.js';
 // import { extract_keyframes } from './videoReader.js';
 import { config } from 'dotenv';
@@ -14,7 +14,24 @@ function timeToSeconds(timeString) {
     const minutes = parseInt(parts.length === 3 ? parts[1] : parts[0], 10);
     const seconds = parseInt(parts.length === 3 ? parts[2] : parts[1], 10);
     return hours * 3600 + minutes * 60 + seconds;
-  }
+}
+
+// Helper function to calculate cost of API calls
+function estimateCostMain(totalTokens, engine){
+    let tokenCost = 0;
+    if (engine === 'openAI'){
+        totalCost = estimateCostOpenAI(totalTokens);
+    }
+    else if (engine === 'claude'){
+        totalCost = estimateCostClaude(totalTokens);
+    }
+    else {
+        console.error('Engine must either be \'openAI\' or \'claude\'.');
+    }
+
+    return { tokenCost };
+}
+
 
 // Function to parse command-line arguments
 export function parseArguments() {
@@ -89,6 +106,8 @@ async function main() {
         const wozTimestamps = wozQuestions.map(question => timeToSeconds(question.time));
         
         let wozIndex = 0;
+        let totalTokens = 0;
+
         // Maps the generated questions / WoZ questions to timestamps
         for (let i = 0; i < transcript.length; i++) {
             const entry = transcript[i];
@@ -105,7 +124,8 @@ async function main() {
                     let response;
                     try {
                         const questionGenerated = await generateQuestionOpenAI(messages);
-                        response = questionGenerated.response; 
+                        response = questionGenerated.response;
+                        totalTokens += questionGenerated.tokensUsed; // Tokens generated (openAI)
                         console.log(response);
                     } catch (error) {
                         console.error('Error generating OpenAI question:', error);
@@ -131,7 +151,8 @@ async function main() {
                     let understandingResponse;
                     try {
                         const understandingGenerated = await generateUnderstandingOpenAI(messages);
-                        understandingResponse = understandingGenerated.understandingResponse; 
+                        understandingResponse = understandingGenerated.understandingResponse;
+                        totalTokens += understandingGenerated.tokensUsed; // Tokens generated (openAI)
                         console.log(understandingResponse);
                     } catch (error) {
                         console.error('Error generating OpenAI understanding:', error);
@@ -166,6 +187,7 @@ async function main() {
                     try {
                         const questionGenerated = await generateQuestionClaude(messages, promptScript);
                         response = questionGenerated.response; 
+                        totalTokens += questionGenerated.tokensUsed; // Tokens generated (claude)
                         console.log(response);
                     } catch (error) {
                         console.error('Error generating Claude question:', error);
@@ -191,7 +213,8 @@ async function main() {
                     let understandingResponse;
                     try {
                         const understandingGenerated = await generateUnderstandingClaude(messages, promptScript);
-                        understandingResponse = understandingGenerated.understandingResponse; 
+                        understandingResponse = understandingGenerated.understandingResponse;
+                        totalTokens += understandingGenerated.tokensUsed; // Tokens generated (claude)
                         console.log(understandingResponse);
                     } catch (error) {
                         console.error('Error generating Claude understanding:', error);
@@ -228,7 +251,8 @@ async function main() {
         // naming & metadata
         const outputFileName = `${new Date().toISOString().replace(/[:-]/g, '').split('.')[0]}_${engine}_${assistant}-${version}.csv`;
         const outputFilePath = path.join('data', dataFile, outputFileName);
-        const metadata = `Agent;${assistant}\nVersion;${version}\nEngine;${engine}\nTranscript;${transcript_wizard}\n`;
+        const tokenCost = estimateCostMain(totalTokens, engine);
+        const metadata = `Agent;${assistant}\nVersion;${version}\nEngine;${engine}\nTranscript;${transcript_wizard}\nTokens;${totalTokens}\nEstimated Cost${tokenCost}\n`;
         const headers = 'Times;Generated Responses;Understanding of Agent\n'
 
         const rows = generatedQuestions.map((q, idx) => `${q.timestamp};"${q.generatedQuestion.replace(/"/g, '""')}";"${assistantUnderstanding[idx].understanding.replace(/"/g, '""')}"`).join('\n');
