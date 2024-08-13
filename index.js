@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { estimateCostOpenAI, generateQuestionOpenAI, generateUnderstandingOpenAI } from './openai.js';
+import { countTokensOpenAI, estimateCostOpenAI, generateTextOpenAI, returnTokensOpenAI } from './openai.js';
 import { generateQuestionClaude, generateUnderstandingClaude, formatMessagesForClaude, estimateCostClaude } from './claude.js';
 import { readTranscription, readWOZQuestions, injectWOZQuestions, removeWOZQuestions } from './transcriptReader.js';
 // import { extract_keyframes } from './videoReader.js';
@@ -37,7 +37,7 @@ function estimateCostMain(totalTokens, engine){
 export function parseArguments() {
     const args = process.argv.slice(2);
     if (args.length !== 5) {
-        console.error('Usage: node index.js [P?] [wizard-y/n] [screenshot-y/n] [openAI|claude]  [pythia-v?|socratais-v?|hephaistus-v?]');
+        console.error('Usage: node index.js [P?] [wizard-y/n] [screenshot-y/n] [openAI|claude] [pythia-v?|socratais-v?|hephaistus-v?]');
         process.exit(1);
     }
     // Sets variables
@@ -106,7 +106,6 @@ async function main() {
         const wozTimestamps = wozQuestions.map(question => timeToSeconds(question.time));
         
         let wozIndex = 0;
-        let totalTokens = 0;
 
         // Maps the generated questions / WoZ questions to timestamps
         for (let i = 0; i < transcript.length; i++) {
@@ -123,10 +122,12 @@ async function main() {
 
                     let response;
                     try {
-                        const questionGenerated = await generateQuestionOpenAI(messages);
-                        response = questionGenerated.response;
-                        totalTokens += questionGenerated.tokensUsed; // Tokens generated (openAI)
-                        console.log(response);
+                        const messageAim = "question";
+                        const questionGenerated = await generateTextOpenAI(messages, messageAim);
+                        response = questionGenerated;
+                        console.log(questionGenerated);
+                        countTokensOpenAI(questionGenerated);
+                        console.log('Total tokens: ', returnTokensOpenAI());
                     } catch (error) {
                         console.error('Error generating OpenAI question:', error);
                     }
@@ -150,10 +151,13 @@ async function main() {
                     // Generate the assistant's understanding of the user's progress (openAI)
                     let understandingResponse;
                     try {
-                        const understandingGenerated = await generateUnderstandingOpenAI(messages);
-                        understandingResponse = understandingGenerated.understandingResponse;
-                        totalTokens += understandingGenerated.tokensUsed; // Tokens generated (openAI)
-                        console.log(understandingResponse);
+                        const messageAim = "understanding";
+                        const understandingGenerated = await generateTextOpenAI(messages, messageAim);
+                        understandingResponse = understandingGenerated;
+                        console.log(understandingGenerated);
+                        countTokensOpenAI(understandingGenerated);
+                        console.log('Total tokens: ', returnTokensOpenAI());
+                        
                     } catch (error) {
                         console.error('Error generating OpenAI understanding:', error);
                     }
