@@ -7,9 +7,9 @@ const claude = new Anthropic({ apiKey: process.env.CLAUDE_API_KEY });
 const model = 'claude-3-5-sonnet-20240620';
 const max_tokens = 4096;
 
-let inputTokens;
-let outputTokens;
-let totalTokens;
+let inputTokens = 0;
+let outputTokens = 0;
+let totalTokens = 0;
 const inputTokensPrice = 3/1000000; // for claude 3.5 sonnet 
 const outputTokensPrice = 15/1000000; // for claude 3.5 sonnet
 
@@ -52,14 +52,12 @@ export async function generateTextClaude(method_messages, messageAim, promptScri
         ],
     });
 
-    return response;
-}
-
-export function countTokensClaude(chatCompletion){
-    const tokensUsed = chatCompletion.usage.total_tokens;
-    inputTokens += chatCompletion.usage.prompt_tokens;
-    outputTokens += chatCompletion.usage.completion_tokens;
+    inputTokens += response.usage.input_tokens;
+    outputTokens += response.usage.output_tokens;
+    const tokensUsed = inputTokens + outputTokens;
     totalTokens += tokensUsed;
+
+    return response;
 }
 
 export function returnTokensClaude(){
@@ -67,15 +65,9 @@ export function returnTokensClaude(){
 }
 
 // Helper function to calculate cost of API calls (claude)
-export function estimateCostClaude(totalTokens){
-    let tokenCost;
-
-    if (totalTokens != this.totalTokens){ // check if token count is correct
-        console.error('Total token count does not match (openAI).');
-    }
-    else {
-        tokenCost = (inputTokens * inputTokensPrice) + (outputTokens * outputTokensPrice);
-    }
+export function estimateCostClaude(){
+    let tokenCost = 0;
+    tokenCost = (inputTokens * inputTokensPrice) + (outputTokens * outputTokensPrice);
 
     return tokenCost;
 }

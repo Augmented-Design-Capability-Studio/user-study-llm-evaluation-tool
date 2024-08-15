@@ -39,14 +39,13 @@ export async function generateTextOpenAI(method_messages, messageAim){
         messages: chatMessages,
     });
 
-    return response;
-}
-
-export function countTokensOpenAI(chatCompletion){
-    const tokensUsed = chatCompletion.usage.total_tokens;
-    inputTokens += chatCompletion.usage.prompt_tokens;
-    outputTokens += chatCompletion.usage.completion_tokens;
+    
+    const tokensUsed = response.usage.total_tokens;
+    inputTokens += response.usage.prompt_tokens;
+    outputTokens += response.usage.completion_tokens;
     totalTokens += tokensUsed;
+
+    return response;
 }
 
 export function returnTokensOpenAI(){
@@ -54,15 +53,9 @@ export function returnTokensOpenAI(){
 }
 
 // Helper function to calculate cost of API calls (openAI)
-export function estimateCostOpenAI(totalTokens){
-    let tokenCost;
-
-    if (totalTokens != this.totalTokens){ // check if token count is correct
-        console.error('Total token count does not match (openAI).');
-    }
-    else {
-        tokenCost = (inputTokens * inputTokensPrice) + (outputTokens * outputTokensPrice);
-    }
+export function estimateCostOpenAI(){
+    let tokenCost = 0;
+    tokenCost = (inputTokens * inputTokensPrice) + (outputTokens * outputTokensPrice);
 
     return tokenCost;
 }

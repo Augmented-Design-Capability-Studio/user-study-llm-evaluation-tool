@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
-import { countTokensOpenAI, estimateCostOpenAI, generateTextOpenAI, returnTokensOpenAI } from './openai.js';
-import { generateQuestionClaude, generateUnderstandingClaude, formatMessagesForClaude, estimateCostClaude } from './claude.js';
+import { estimateCostOpenAI, generateTextOpenAI, returnTokensOpenAI } from './openai.js';
+import { generateTextClaude, formatMessagesForClaude, estimateCostClaude, returnTokensClaude } from './claude.js';
 import { readTranscription, readWOZQuestions, injectWOZQuestions, removeWOZQuestions } from './transcriptReader.js';
 // import { extract_keyframes } from './videoReader.js';
 import { config } from 'dotenv';
@@ -16,20 +16,36 @@ function timeToSeconds(timeString) {
     return hours * 3600 + minutes * 60 + seconds;
 }
 
-// Helper function to calculate cost of API calls
-function estimateCostMain(totalTokens, engine){
-    let tokenCost = 0;
+// Helper function to obtain total number of tokens used
+function countTotalTokens(engine){
+    let totalTokens = 0;
     if (engine === 'openAI'){
-        totalCost = estimateCostOpenAI(totalTokens);
+        totalTokens = returnTokensOpenAI();
     }
     else if (engine === 'claude'){
-        totalCost = estimateCostClaude(totalTokens);
+        totalTokens = returnTokensClaude();
     }
     else {
-        console.error('Engine must either be \'openAI\' or \'claude\'.');
+        console.error('Token count: Engine must either be \'openAI\' or \'claude\'.');
     }
 
-    return { tokenCost };
+    return totalTokens;
+}
+
+// Helper function to calculate cost of API calls
+function estimateCostMain(engine){
+    let tokenCost = 0;
+    if (engine === 'openAI'){
+        tokenCost = estimateCostOpenAI();
+    }
+    else if (engine === 'claude'){
+        tokenCost = estimateCostClaude();
+    }
+    else {
+        console.error('Token cost: Engine must either be \'openAI\' or \'claude\'.');
+    }
+
+    return tokenCost;
 }
 
 
@@ -97,8 +113,10 @@ async function main() {
     const generatedQuestions = [];
     const assistantUnderstanding = [];
 
+
     // Processes transcript
     async function processTranscript() {
+
         let messages = [
             { role: 'system', content: promptScript }
         ];
@@ -126,8 +144,8 @@ async function main() {
                         const questionGenerated = await generateTextOpenAI(messages, messageAim);
                         response = questionGenerated;
                         console.log(questionGenerated);
-                        countTokensOpenAI(questionGenerated);
                         console.log('Total tokens: ', returnTokensOpenAI());
+                        console.log('Total cost: ', estimateCostOpenAI());
                     } catch (error) {
                         console.error('Error generating OpenAI question:', error);
                     }
@@ -155,8 +173,8 @@ async function main() {
                         const understandingGenerated = await generateTextOpenAI(messages, messageAim);
                         understandingResponse = understandingGenerated;
                         console.log(understandingGenerated);
-                        countTokensOpenAI(understandingGenerated);
                         console.log('Total tokens: ', returnTokensOpenAI());
+                        console.log('Total cost: ', estimateCostOpenAI());
                         
                     } catch (error) {
                         console.error('Error generating OpenAI understanding:', error);
@@ -185,14 +203,15 @@ async function main() {
                 else if (engine === "claude"){
 
                     let response;
-                    
                     messages = formatMessagesForClaude(messages);
 
                     try {
-                        const questionGenerated = await generateQuestionClaude(messages, promptScript);
-                        response = questionGenerated.response; 
-                        totalTokens += questionGenerated.tokensUsed; // Tokens generated (claude)
-                        console.log(response);
+                        const messageAim = "question";
+                        const questionGenerated = await generateTextClaude(messages, messageAim, promptScript);
+                        response = questionGenerated;
+                        console.log(questionGenerated);
+                        console.log('Total tokens: ', returnTokensClaude());
+                        console.log('Total cost: ', estimateCostClaude());
                     } catch (error) {
                         console.error('Error generating Claude question:', error);
                     }
@@ -216,10 +235,13 @@ async function main() {
                     // Generate the assistant's understanding of the user's progress (claude)
                     let understandingResponse;
                     try {
-                        const understandingGenerated = await generateUnderstandingClaude(messages, promptScript);
-                        understandingResponse = understandingGenerated.understandingResponse;
-                        totalTokens += understandingGenerated.tokensUsed; // Tokens generated (claude)
-                        console.log(understandingResponse);
+                        const messageAim = "understanding";
+                        const understandingGenerated = await generateTextClaude(messages, messageAim, promptScript);
+                        understandingResponse = understandingGenerated;
+                        console.log(understandingGenerated);
+                        console.log('Total tokens: ', returnTokensClaude());
+                        console.log('Total cost: ', estimateCostClaude());
+                        
                     } catch (error) {
                         console.error('Error generating Claude understanding:', error);
                     }
@@ -249,13 +271,16 @@ async function main() {
                     console.error('Engine must either be \'openAI\' or \'claude\'.');
                 }
 
-            }
-        }
 
+            }
+                
+        }
+        
         // naming & metadata
         const outputFileName = `${new Date().toISOString().replace(/[:-]/g, '').split('.')[0]}_${engine}_${assistant}-${version}.csv`;
         const outputFilePath = path.join('data', dataFile, outputFileName);
-        const tokenCost = estimateCostMain(totalTokens, engine);
+        const totalTokens = countTotalTokens(engine);
+        const tokenCost = estimateCostMain(engine);
         const metadata = `Agent;${assistant}\nVersion;${version}\nEngine;${engine}\nTranscript;${transcript_wizard}\nTokens;${totalTokens}\nEstimated Cost${tokenCost}\n`;
         const headers = 'Times;Generated Responses;Understanding of Agent\n'
 
